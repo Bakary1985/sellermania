@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon commerce!{% endblock %}
+
+{% block body %}
+    {% if produits|length > 0 %}
+        <div class="row mb-5">
+            {% for produit in produits %}
+                <div class="col-md-4">
+                    <article class="pin bg-white rounded shadow">
+                        <h3>{{ produit.name }}
+                            <small class="float-right mw-100">{{produit.price.IsPlancher !=true ? produit.price.prixNormal : produit.price.prixPlancher}} €</small>
+                        </h3>
+                        <strong>Etat: {{ produit.etat.name }}</strong>
+                        <div class="mw-100 overflow-hidden">
+                            <a href="">
+                                <img src="{{ vich_uploader_asset(produit) | imagine_filter('my_thumb_filter_max') }}"
+                                     alt="{{ produit.name }}" class="w-100 rounded-top"/>
+                            </a>
+                        </div>
+                        <p>{{ produit.description | u.truncate(10, '...', false) }}</p>
+                        <p>subimetted {{ produit.updatedAt |ago }}</p>
+                    </article>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center">Pas de produits disponible!</p>
+    {% endif %}
+
+{% endblock %}
