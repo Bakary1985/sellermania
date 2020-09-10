@@ -13,7 +13,7 @@
                         </h3>
                         <strong>Etat: {{ produit.etat.name }}</strong>
                         <div class="mw-100 overflow-hidden">
-                            <a href="">
+                            <a href="{{ path('produit_show', {'id': produit.id}) }}">
                                 <img src="{{ vich_uploader_asset(produit) | imagine_filter('my_thumb_filter_max') }}"
                                      alt="{{ produit.name }}" class="w-100 rounded-top"/>
                             </a>
