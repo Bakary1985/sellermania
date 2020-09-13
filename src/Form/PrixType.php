@@ -16,6 +16,7 @@ class PrixType extends AbstractType
             ->add('prixPlancher')
             ->add('isPlancher')
             ->add('name')
+            ->add('isPromo')
         ;
     }
 

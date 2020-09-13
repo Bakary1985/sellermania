@@ -11,8 +11,10 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Is Plancher</th>
+                <th>Prix Normal</th>
+                <th>Prix Plancher</th>
                 <th>Image</th>
-                <th>UpdatedAt</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -22,8 +24,11 @@
                 <td>{{ produit.id }}</td>
                 <td>{{ produit.name }}</td>
                 <td>{{ produit.description }}</td>
-                <td>{{ produit.image }}</td>
-                <td>{{ produit.updatedAt ? produit.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ produit.price.IsPlancher == true ? "Yes":"Non" }}</td>
+                <td>{{ produit.price.prixNormal }}</td>
+                <td>{{ produit.price.prixPlancher }}</td>
+                <td><img src="{{ vich_uploader_asset(produit) | imagine_filter('my_thumb_filter_max') }}"
+                         alt="{{ produit.name }}" class="w-100 rounded-top"/></td>
                 <td>
                     <a href="{{ path('produit_edit', {'id': produit.id}) }}">edit</a>
                 </td>

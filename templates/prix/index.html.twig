@@ -13,6 +13,7 @@
                 <th>PrixPlancher</th>
                 <th>IsPlancher</th>
                 <th>Name</th>
+                <th>IsPromo</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -24,6 +25,7 @@
                 <td>{{ prix.prixPlancher }}</td>
                 <td>{{ prix.isPlancher ? 'Yes' : 'No' }}</td>
                 <td>{{ prix.name }}</td>
+                <td>{{ prix.isPromo ? 'Yes' : 'No' }}</td>
                 <td>
                     <a href="{{ path('prix_show', {'id': prix.id}) }}">show</a>
                     <a href="{{ path('prix_edit', {'id': prix.id}) }}">edit</a>
@@ -31,7 +33,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="7">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

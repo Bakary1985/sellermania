@@ -44,6 +44,11 @@ class Prix
      */
     private $name;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isPromo;
+
     public function __construct()
     {
         $this->produits = new ArrayCollection();
@@ -138,5 +143,17 @@ class Prix
      */
     public function __toString(){
         return $this->name;
+    }
+
+    public function getIsPromo(): ?bool
+    {
+        return $this->isPromo;
+    }
+
+    public function setIsPromo(?bool $isPromo): self
+    {
+        $this->isPromo = $isPromo;
+
+        return $this;
     }
 }

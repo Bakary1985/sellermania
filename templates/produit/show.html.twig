@@ -17,16 +17,14 @@
                          alt="{{ produit.name }}" class="w-100 rounded-top"/>
                 </a>
             </div>
-            <p>{{ produit.description}}</p>
+            <p> Détails : {{ produit.description}}</p>
             <p>Poster il y'a {{ produit.updatedAt |ago }}</p>
 
-            <a href="{{ path('produit_edit', {'id': produit.id}) }}">edit</a>
+            <a  type="button" class="btn btn-secondary" href="{{ path('produit_index') }}">La liste</a>
+
+            <a  type="button" class="btn btn-warning" href="{{ path('produit_edit', {'id': produit.id}) }}">Modifier</a>
+            {{ include('produit/_delete_form.html.twig') }}
         </article>
-        <a href="{{ path('produit_index') }}">back to list</a>
     </div>
 </div>
-
-
-
-    {{ include('produit/_delete_form.html.twig') }}
 {% endblock %}

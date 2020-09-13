@@ -19,7 +19,7 @@
                             </a>
                         </div>
                         <p>{{ produit.description | u.truncate(10, '...', false) }}</p>
-                        <p>subimetted {{ produit.updatedAt |ago }}</p>
+                        <p>subimetted {{ produit.updatedAt |ago }}  <a class="float-right mw-100"  href="{{ path('produit_show', {'id': produit.id}) }}">En savoir plus</a></p>
                     </article>
                 </div>
             {% endfor %}
