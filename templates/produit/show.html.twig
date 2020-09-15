@@ -4,27 +4,35 @@
 
 {% block body %}
     <h1>Produit</h1>
-<div class="row">
-    <div class="col-md-6 mx-auto">
-        <article class="pin bg-white rounded shadow">
-            <h3>{{ produit.name }}
-                <small class="float-right mw-100">{{produit.price.IsPlancher !=true ? produit.price.prixNormal : produit.price.prixPlancher}} €</small>
-            </h3>
-            <strong>Etat: {{ produit.etat.name }}</strong>
-            <div class="mw-100 overflow-hidden">
-                <a href="{{ path('produit_show', {'id': produit.id}) }}">
-                    <img src="{{ vich_uploader_asset(produit) | imagine_filter('my_thumb_filter_max') }}"
-                         alt="{{ produit.name }}" class="w-100 rounded-top"/>
-                </a>
-            </div>
-            <p> Détails : {{ produit.description}}</p>
-            <p>Poster il y'a {{ produit.updatedAt |ago }}</p>
 
-            <a  type="button" class="btn btn-secondary" href="{{ path('produit_index') }}">La liste</a>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ produit.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ produit.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ produit.description }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ produit.image }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ produit.updatedAt ? produit.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
 
-            <a  type="button" class="btn btn-warning" href="{{ path('produit_edit', {'id': produit.id}) }}">Modifier</a>
-            {{ include('produit/_delete_form.html.twig') }}
-        </article>
-    </div>
-</div>
+    <a href="{{ path('produit_index') }}">back to list</a>
+
+    <a href="{{ path('produit_edit', {'id': produit.id}) }}">edit</a>
+
+    {{ include('produit/_delete_form.html.twig') }}
 {% endblock %}

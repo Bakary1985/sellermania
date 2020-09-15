@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Concurrence{% endblock %}
+
+{% block body %}
+    <h1>Create new Concurrence</h1>
+
+    {{ include('concurrence/_form.html.twig') }}
+
+    <a href="{{ path('concurrence_index') }}">back to list</a>
+{% endblock %}

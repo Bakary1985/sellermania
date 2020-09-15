@@ -61,6 +61,11 @@ class Produit
      */
     private $price;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Concurrence::class, cascade={"persist", "remove"})
+     */
+    private $concurrence;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -129,7 +134,7 @@ class Produit
         return $this;
     }
 
-    public function getEtat(): ?Etat
+    public function getEtat(): Etat
     {
         return $this->etat;
     }
@@ -149,6 +154,18 @@ class Produit
     public function setPrice(?Prix $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getConcurrence(): ?Concurrence
+    {
+        return $this->concurrence;
+    }
+
+    public function setConcurrence(?Concurrence $concurrence): self
+    {
+        $this->concurrence = $concurrence;
 
         return $this;
     }

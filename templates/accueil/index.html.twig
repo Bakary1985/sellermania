@@ -6,10 +6,25 @@
     {% if produits|length > 0 %}
         <div class="row mb-5">
             {% for produit in produits %}
+
                 <div class="col-md-4">
                     <article class="pin bg-white rounded shadow">
                         <h3>{{ produit.name }}
-                            <small class="float-right mw-100">{{produit.price.IsPlancher !=true ? produit.price.prixNormal : produit.price.prixPlancher}} €</small>
+                            {% set resultat = 0 %}
+                            {% if produit.getConcurrence != null %}
+                                {% if produit.etat.name == produit.getConcurrence.getEtat %}
+                                    {% if produit.price.prixNormal > produit.getConcurrence.getPrix %}
+                                        {% set resultat = produit.getConcurrence.getPrix -1 %}
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                            {% if resultat == null %}
+                            <small class="float-right mw-100">{{ produit.price.IsPlancher !=true ? produit.price.prixNormal : produit.price.prixPlancher }}
+                                €</small>
+                            {% else %}
+                                <small class="float-right mw-100">{{ resultat }} €</small>
+
+                            {% endif %}
                         </h3>
                         <strong>Etat: {{ produit.etat.name }}</strong>
                         <div class="mw-100 overflow-hidden">
@@ -19,7 +34,9 @@
                             </a>
                         </div>
                         <p>{{ produit.description | u.truncate(10, '...', false) }}</p>
-                        <p>subimetted {{ produit.updatedAt |ago }}  <a class="float-right mw-100"  href="{{ path('produit_show', {'id': produit.id}) }}">En savoir plus</a></p>
+                        <p>subimetted {{ produit.updatedAt |ago }} <a class="float-right mw-100"
+                                                                      href="{{ path('produit_show', {'id': produit.id}) }}">En
+                                savoir plus</a></p>
                     </article>
                 </div>
             {% endfor %}

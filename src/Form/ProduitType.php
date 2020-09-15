@@ -24,6 +24,7 @@ class ProduitType extends AbstractType
             ->add('description')
             ->add('etat')
             ->add('price')
+            ->add('concurrence')
         ;
     }
 
